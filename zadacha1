@@ -1,0 +1,41 @@
+#include <iostream>
+
+void permut_to_invtab(int a[], int b[], int n)
+{
+bool vs = false;
+int el = 1;
+while (!vs)
+{
+int k = 0, id = 0;
+for (int i = 0; i < n; i++)
+{
+if (a[i] == el)
+{
+id = i;
+break;
+}
+}
+for (int i = 0; i < id; i++)
+if (a[i] > el)
+k++;
+b[el - 1] = k;
+el++;
+if (el > n)
+vs = true;
+}
+for (int i = 0; i < n; i++)
+printf("%d ", b[i]);
+}
+int main()
+{
+const int N = 1000;
+int n;
+scanf_s("%d", &n);
+int a[N], b[N];
+for (int i = 0; i < n; i++)
+{
+scanf_s("%d", &a[i]);
+b[i] = 0;
+}
+permut_to_invtab(a, b, n);
+}
