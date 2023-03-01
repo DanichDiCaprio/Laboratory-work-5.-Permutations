@@ -1,0 +1,50 @@
+#ifdef _MSC_VER
+#define _CRT_SECURE_NO_WARNINGS
+#endif
+#include <iostream>
+
+
+void perm(char a[], int n) {
+int p = 0, qwe = -1;
+
+for (int i = n - 1; i > 0; i--) {
+if (a[i - 1] < a[i]) {
+qwe = i - 1;
+break;
+}
+} if (qwe >=0) {
+for (int i = qwe; i < n; i++) {
+if (a[qwe] < a[i]) {
+p = i;
+}
+}
+int temp= a[qwe];
+a[qwe] = a[p];
+a[p] = temp;
+}
+int r = qwe + 1;
+for (int i = r; i < (n + r) / 2; i++) {
+
+int temp = a[i];
+a[i] = a[n-i+qwe];
+a[n-i+qwe] = temp;
+}
+
+for (int i = 0; i < n; i++) {
+putchar(a[i]);
+printf(" ");
+}
+}
+
+int main() {
+
+char a[1000];
+int n;
+scanf_s("%d", &n);
+
+for (int i = 0; i < n; i++) {
+scanf("%s",&a[i]);
+}
+
+perm(a, n);
+}
